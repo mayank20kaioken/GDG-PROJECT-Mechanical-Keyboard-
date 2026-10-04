@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive 3D Keyboard Showcase</title>
+    <style>
+        /* This CSS styles the layout and ensures the 3D canvas fills the screen */
+        body { margin: 0; display: flex; height: 100vh; background-color: #1a1a1a; color: white; font-family: sans-serif; }
+        .ui-panel { padding: 40px; width: 350px; z-index: 10; display: flex; flex-direction: column; gap: 15px; }
+        .spline-container { flex-grow: 1; position: relative; }
+        button { padding: 12px; cursor: pointer; background-color: #facc15; border: none; font-weight: bold; border-radius: 5px; }
+        button:hover { background-color: #eab308; }
+    </style>
+</head>
+<body>
+
+    <!-- Your UI and Interactive Information Points -->
+    <div class="ui-panel">
+        <h1>Aula F75 Showcase</h1>
+        <p id="info-text">Select a feature below to learn more about the internals.</p>
+
+        <!-- Requirement: Two interactive info points -->
+        <button onclick="showSwitches()">View Switch Details</button>
+        <button onclick="showKeycaps()">View Keycap Specs</button>
+    </div>
+
+    <!-- Your Spline 3D Model goes here -->
+    <div class="spline-container">
+        <script type="module" src="https://cdn.spline.design/@splinetool/viewer@2.0.66/build/spline-viewer.webgpu.js"></script>
+<spline-viewer url="https://prod.spline.design/4Zb3XsXnjByxE2qR/scene.splinecode"></spline-viewer>
+
+    </div>
+
+    <script>
+        // This is basic JavaScript handling the event listeners for the buttons
+        function showSwitches() {
+            document.getElementById('info-text').innerText = "Equipped with linear Matcha Latte switches. These provide a smooth keystroke and a muted, thocky sound profile ideal for both gaming and typing.";
+        }
+        function showKeycaps() {
+            document.getElementById('info-text').innerText = "Features double-shot PBT keycaps. This manufacturing process prevents the keys from developing a greasy shine over time and ensures extreme durability.";
+        }
+    </script>
+</body>
+</html>

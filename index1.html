@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aula F75 | Interactive 3D Showcase</title>
+    <!-- Importing a clean, modern Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Base Reset */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background-color: #0d0d0d; 
+            color: #ffffff; 
+            overflow: hidden; /* Prevents unwanted scrolling */
+        }
+
+        /* Full Screen 3D Background */
+        .spline-container { 
+            position: absolute; 
+            top: 0; 
+            left: 0; 
+            width: 100vw; 
+            height: 100vh; 
+            z-index: 1; 
+        }
+
+        /* Glassmorphism Floating Panel */
+        .ui-panel { 
+            position: absolute; 
+            top: 50%; 
+            left: 5%; 
+            transform: translateY(-50%); 
+            width: 400px; 
+            z-index: 10; 
+            display: flex; 
+            flex-direction: column; 
+            gap: 20px; 
+            
+            /* The Frosted Glass Effect */
+            background: rgba(20, 20, 20, 0.4); 
+            backdrop-filter: blur(12px); 
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1); 
+            border-radius: 16px; 
+            padding: 40px; 
+            box-shadow: 0 25px 50px rgba(0,0,0,0.5);
+        }
+
+        /* Typography */
+        h1 { 
+            font-size: 2.5rem; 
+            font-weight: 700; 
+            letter-spacing: -1px;
+            background: linear-gradient(90deg, #ffffff, #a0a0a0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        #info-text { 
+            font-size: 1rem; 
+            font-weight: 300; 
+            line-height: 1.6; 
+            color: #d1d5db; 
+            min-height: 80px; /* Prevents layout shifting when text changes */
+            transition: opacity 0.3s ease;
+        }
+
+        /* Modern Buttons matching the Yellow Keycaps */
+        .button-group {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-top: 10px;
+        }
+        
+        button { 
+            padding: 14px 20px; 
+            cursor: pointer; 
+            background-color: transparent; 
+            border: 1px solid #facc15; 
+            color: #facc15; 
+            font-family: 'Inter', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 700; 
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-radius: 8px; 
+            transition: all 0.3s ease; 
+        }
+        
+        button:hover { 
+            background-color: #facc15; 
+            color: #000000; 
+            box-shadow: 0 0 15px rgba(250, 204, 21, 0.4);
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .ui-panel {
+                width: 90%;
+                left: 50%;
+                top: auto;
+                bottom: 30px;
+                transform: translateX(-50%);
+                padding: 25px;
+            }
+            h1 { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Full Screen Spline 3D Model -->
+    <div class="spline-container">
+        <script type="module" src="https://cdn.spline.design/@splinetool/viewer@2.0.66/build/spline-viewer.webgpu.js"></script>
+<spline-viewer url="https://prod.spline.design/4Zb3XsXnjByxE2qR/scene.splinecode"></spline-viewer>
+        
+    </div>
+
+    <!-- Floating Glass UI Panel -->
+    <div class="ui-panel">
+        <h1>Aula F75</h1>
+        <p id="info-text">Interact with the 3D model or select a feature below to explore the hardware specifications.</p>
+
+        <div class="button-group">
+            <button onclick="updateText('switches')">Matcha Latte Switches</button>
+            <button onclick="updateText('keycaps')">Double-Shot PBT</button>
+        </div>
+    </div>
+
+    <script>
+        // JavaScript with a subtle fade animation when changing text
+        const infoText = document.getElementById('info-text');
+
+        function updateText(feature) {
+            // Fade out
+            infoText.style.opacity = 0;
+            
+            setTimeout(() => {
+                // Change text based on button clicked
+                if (feature === 'switches') {
+                    infoText.innerText = "Equipped with linear Matcha Latte switches. These provide a buttery smooth actuation and a highly desirable muted, thocky sound profile.";
+                } else if (feature === 'keycaps') {
+                    infoText.innerText = "Features premium double-shot PBT keycaps in a distinct yellow and grey colorway. The legends will never fade, and the caps resist grease and shine over time.";
+                }
+                // Fade back in
+                infoText.style.opacity = 1;
+            }, 300); // 300ms matches the CSS transition time
+        }
+    </script>
+</body>
+</html>
